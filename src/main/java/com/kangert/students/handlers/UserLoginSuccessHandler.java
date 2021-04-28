@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 20:46:14
- * @LastEditTime: 2021-04-27 17:06:35
+ * @LastEditTime: 2021-04-28 13:34:25
  * @Description: 用户登录成功处理工具类
  */
 package com.kangert.students.handlers;
@@ -38,11 +38,10 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
         // 生成JWT放入请求头中
         String jwt = jwtUtil.getJwtToken(authentication.getName());
         response.setHeader(jwtUtil.getHeader(), jwt);
-
+        // 响应
         ResponseUtil responseUtil = ResponseUtil.ok("登录成功！");
         outputStream.write(JSONUtil.toJsonStr(responseUtil).getBytes("UTF-8"));
         outputStream.flush();
         outputStream.close();
     }
-
 }

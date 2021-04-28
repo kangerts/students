@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 20:28:31
- * @LastEditTime: 2021-04-27 14:43:14
+ * @LastEditTime: 2021-04-28 13:34:39
  * @Description: 用户登录失败处理工具类
  */
 package com.kangert.students.handlers;
@@ -30,6 +30,7 @@ public class UserLoginFailureHandler implements AuthenticationFailureHandler {
             AuthenticationException exception) throws IOException, ServletException {
         response.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = response.getOutputStream();
+        // 响应
         ResponseUtil responseUtil = ResponseUtil.no("登录失败：" + exception.getMessage());
         outputStream.write(JSONUtil.toJsonStr(responseUtil).getBytes("UTF-8"));
         outputStream.flush();

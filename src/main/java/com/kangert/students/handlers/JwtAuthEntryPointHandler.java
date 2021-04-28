@@ -2,8 +2,8 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 18:21:36
- * @LastEditTime: 2021-04-27 19:02:59
- * @Description: JWT验证入口处理类
+ * @LastEditTime: 2021-04-27 19:16:35
+ * @Description: JWT验证入口处理类（未认证）
  */
 package com.kangert.students.handlers;
 
@@ -35,7 +35,5 @@ public class JwtAuthEntryPointHandler implements AuthenticationEntryPoint {
         outputStream.write(JSONUtil.toJsonStr(responseUtil).getBytes("UTF-8"));
         outputStream.flush();
         outputStream.close();
-
     }
-
 }

@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 20:13:13
- * @LastEditTime: 2021-04-28 14:41:07
+ * @LastEditTime: 2021-04-30 13:37:49
  * @Description: 菜单实体类
  */
 package com.kangert.students.modules.system.entitys;
@@ -19,7 +19,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.kangert.students.common.entitys.BaseEntity;
 
 import lombok.Getter;
@@ -38,7 +37,7 @@ public class MenuEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JSONField(serialize = false)
+    // @JSONField(serialize = false)
     @ManyToMany(mappedBy = "menus")
     // @ApiModelProperty(value = "菜单角色")
     private Set<RoleEntity> roles;
@@ -46,7 +45,7 @@ public class MenuEntity extends BaseEntity {
     // @ApiModelProperty(value = "菜单标题")
     private String title;
 
-    @Column(name = "name")
+    @Column(name = "componentName")
     // @ApiModelProperty(value = "菜单组件名称")
     private String componentName;
 

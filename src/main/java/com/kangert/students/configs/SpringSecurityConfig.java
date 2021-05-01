@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-04-27 19:04:08
+ * @LastEditTime: 2021-05-01 20:36:08
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;
@@ -83,6 +83,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 配置自定义过滤器
                 .and().addFilter(jwtAuthHandler());
-
     }
 }

@@ -6,11 +6,6 @@ plugins {
 
 group = 'com.kangert'
 version = '0.0.1-SNAPSHOT'
-/**
- * @description: 
- * @param {*}
- * @return {*}
- */
 sourceCompatibility = '15'
 
 configurations {
@@ -33,7 +28,6 @@ dependencies {
     implementation 'com.alibaba:druid-spring-boot-starter:1.2.6'
     implementation 'cn.hutool:hutool-all:5.6.3'
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
-    implementation 'com.alibaba:fastjson:1.2.76'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'

@@ -69,13 +69,20 @@ spring:
     jpa:
         show-sql: true
         hibernate:
-            ddl-auto: update
+            ddl-auto: create
 
     # Spring 开发工具配置
     devtools:
+        restart:
+            enabled: true
         livereload:
             enabled: true
 
+    # JSON序列化
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+
+# JWT相关配置
 jwt:
     secret: 5bq35Yev54ix5ZGo5aau
     expireSeconds: 14400 #过期时间（秒）

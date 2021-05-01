@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 19:48:13
- * @LastEditTime: 2021-04-28 09:15:11
+ * @LastEditTime: 2021-04-30 13:37:26
  * @Description: 角色实体类
  */
 package com.kangert.students.modules.system.entitys;
@@ -20,7 +20,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kangert.students.common.entitys.BaseEntity;
 import com.kangert.students.common.enums.DataScopeEnum;
 
@@ -31,6 +32,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "sys_role")
+@JsonIgnoreProperties({ "roles" })
 public class RoleEntity extends BaseEntity {
     @Id
     @Column(name = "role_id")
@@ -38,7 +40,6 @@ public class RoleEntity extends BaseEntity {
     // @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 
-    @JSONField(serialize = false)
     @ManyToMany(mappedBy = "roles")
     // @ApiModelProperty(value = "用户", hidden = true)
     private Set<UserEntity> users;

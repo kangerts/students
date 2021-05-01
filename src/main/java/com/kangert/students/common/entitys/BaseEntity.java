@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 19:26:28
- * @LastEditTime: 2021-04-27 19:44:37
+ * @LastEditTime: 2021-04-30 10:00:05
  * @Description: 所有实体类的基类
  */
 package com.kangert.students.common.entitys;
@@ -47,4 +47,7 @@ public class BaseEntity implements Serializable {
     @Column(name = "update_time")
     // @ApiModelProperty(value = "更新时间", hidden = true)
     private Timestamp updateTime;
+
+    // 删除状态（0：正常，1：删除）
+    private int deleted = 0;
 }

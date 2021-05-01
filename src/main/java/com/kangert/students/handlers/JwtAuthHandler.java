@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 15:15:54
- * @LastEditTime: 2021-04-27 17:58:09
+ * @LastEditTime: 2021-04-30 17:00:34
  * @Description: JWT验证处理工具类
  */
 package com.kangert.students.handlers;
@@ -60,6 +60,8 @@ public class JwtAuthHandler extends BasicAuthenticationFilter {
         // 此时可以进行用户权限判断
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, null);
         SecurityContextHolder.getContext().setAuthentication(token);
+        // SecurityContextHolder.getContext().getAuthentication()可以获取用户相关上下文信息（包含权限等信息）
+        System.out.println("当前用户名称：" + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         chain.doFilter(request, response);
     }
 }

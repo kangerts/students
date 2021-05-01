@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 18:55:15
- * @LastEditTime: 2021-04-27 14:09:49
+ * @LastEditTime: 2021-04-30 16:27:21
  * @Description: 全局异常处理工具类
  */
 
@@ -41,8 +41,8 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseUtil handler(RuntimeException e) {
-        log.error("RuntimeException ---> 运行时异常！");
-        return ResponseUtil.no("运行时异常！");
+        log.error("RuntimeException ---> 运行时异常！" + e.getMessage());
+        return ResponseUtil.no("运行时异常！" + e.getMessage());
     }
 
     /**

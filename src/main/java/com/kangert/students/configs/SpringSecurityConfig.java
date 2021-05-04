@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-05-01 20:36:08
+ * @LastEditTime: 2021-05-04 13:30:55
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;

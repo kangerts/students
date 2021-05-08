@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-05-04 13:30:55
+ * @LastEditTime: 2021-05-08 15:54:39
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;
@@ -67,15 +67,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private static final String[] URL_WHITELIST = { "/userLogin", "/userLogout", "/favicon.ico" };
 
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 // 登录配置
                 .formLogin().successHandler(userLoginSuccessHandler).failureHandler(userLoginFailureHandler).and()
-
-                // 防止iframe 造成跨域
-                .headers().frameOptions().disable().and()
-
                 // 禁用session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 

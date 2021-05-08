@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 14:40:58
- * @LastEditTime: 2021-05-04 19:37:07
+ * @LastEditTime: 2021-05-08 15:33:32
  * @Description: 用户尸体类
  */
 
@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +31,7 @@ import com.kangert.students.common.entitys.BaseEntity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,11 +46,11 @@ public class UserEntity extends BaseEntity {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @ApiModelProperty(value = "ID", hidden = true)
+    @ApiModelProperty(value = "ID", hidden = true)
     @JsonProperty("Uid")
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany
     // @ApiModelProperty(value = "用户角色")
     @JoinTable(name = "sys_users_roles", joinColumns = {
             @JoinColumn(name = "user_id", referencedColumnName = "user_id") }, inverseJoinColumns = {
@@ -95,10 +95,6 @@ public class UserEntity extends BaseEntity {
 
     // @ApiModelProperty(value = "是否为admin账号", hidden = true)
     private Boolean isAdmin = false;
-
-    @Column(name = "pwd_reset_time")
-    // @ApiModelProperty(value = "最后修改密码的时间", hidden = true)
-    private Date pwdResetTime;
 
     @Override
     public boolean equals(Object o) {

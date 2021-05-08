@@ -45,14 +45,10 @@ public class JwtUtil {
      * @return 返回JWT字符串
      */
     public String getJwtToken(String userName) {
-        /**
-         * 获取当前时间对象
-         */
+        // 获取当前时间对象
         Date currentTime = new Date(DateUtil.current());
 
-        /**
-         * 计算过期时的时间
-         */
+        // 计算过期时的时间
         Date expireTime = new Date(currentTime.getTime() + 1000 * expireSeconds);
 
         return Jwts.builder().setHeaderParam("typ", "JWT").setSubject(userName).setIssuedAt(currentTime)
@@ -73,7 +69,12 @@ public class JwtUtil {
         }
     }
 
-    // JWT是否过期
+    /**
+     * JWT是否过期
+     * 
+     * @param claims JWT对象
+     * @return 是否过期（布尔值）
+     */
     public boolean isTokenExpire(Claims claims) {
         return claims.getExpiration().before(new Date());
     }

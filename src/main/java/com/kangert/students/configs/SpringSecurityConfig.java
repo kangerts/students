@@ -72,6 +72,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 // 登录配置
                 .formLogin().successHandler(userLoginSuccessHandler).failureHandler(userLoginFailureHandler).and()
+
+                // 防止iframe 造成跨域
+                .headers().frameOptions().disable().and()
+
                 // 禁用session
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 

@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 14:40:58
- * @LastEditTime: 2021-04-30 16:38:16
+ * @LastEditTime: 2021-05-04 19:37:07
  * @Description: 用户尸体类
  */
 
@@ -26,7 +26,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kangert.students.common.entitys.BaseEntity;
 

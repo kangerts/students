@@ -67,6 +67,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private static final String[] URL_WHITELIST = { "/userLogin", "/userLogout", "/favicon.ico" };
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 // 登录配置

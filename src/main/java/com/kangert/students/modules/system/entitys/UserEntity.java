@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 14:40:58
- * @LastEditTime: 2021-05-08 15:33:32
+ * @LastEditTime: 2021-05-10 18:17:21
  * @Description: 用户尸体类
  */
 
@@ -46,7 +46,7 @@ public class UserEntity extends BaseEntity {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(value = "ID", hidden = true)
+    // @ApiModelProperty(value = "ID", hidden = true)
     @JsonProperty("Uid")
     private Long id;
 

@@ -6,7 +6,7 @@ spring:
     # 数据库
     datasource:
         # 基本属性
-        url: jdbc:mysql://localhost:3306/students?serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+        url: jdbc:mysql://localhost:3306/students?createDatabaseIfNotExist=true&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
         username: root
         password: 1587311770
         driver-class-name: com.mysql.cj.jdbc.Driver

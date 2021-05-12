@@ -2,13 +2,12 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 14:40:58
- * @LastEditTime: 2021-05-10 18:17:21
+ * @LastEditTime: 2021-05-11 14:21:52
  * @Description: 用户尸体类
  */
 
 package com.kangert.students.modules.system.entitys;
 
-import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
@@ -31,7 +30,6 @@ import com.kangert.students.common.entitys.BaseEntity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 

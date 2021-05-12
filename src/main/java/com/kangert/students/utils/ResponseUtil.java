@@ -2,21 +2,13 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 18:10:19
- * @LastEditTime: 2021-04-30 14:32:29
- * @Description: 
- */
-/*
- * @Author: kangert
- * @Email: kangert@qq.com
- * @Date: 2021-04-25 18:10:19
- * @LastEditTime: 2021-04-25 18:45:41
+ * @LastEditTime: 2021-05-11 11:05:57
  * @Description: 统一数据响应工具类
  */
 package com.kangert.students.utils;
 
 import java.io.Serializable;
 
-import antlr.collections.List;
 import lombok.Getter;
 import lombok.Setter;
 

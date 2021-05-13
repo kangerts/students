@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-05-13 09:23:07
+ * @LastEditTime: 2021-05-13 09:39:03
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;
@@ -31,25 +31,25 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      * 登录失败处理工具类
      */
     @Autowired
-    UserLoginFailureHandler userLoginFailureHandler;
+    private UserLoginFailureHandler userLoginFailureHandler;
 
     /**
      * 登录成功处理工具类
      */
     @Autowired
-    UserLoginSuccessHandler userLoginSuccessHandler;
+    private UserLoginSuccessHandler userLoginSuccessHandler;
 
     /**
      * JWT处理工具入口
      */
     @Autowired
-    JwtAuthEntryPointHandler jwtAuthEntryPointHandler;
+    private JwtAuthEntryPointHandler jwtAuthEntryPointHandler;
 
     /**
      * JWT访问拒绝处理类
      */
     @Autowired
-    JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    private JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
     /**
      * JWT验证处理工具
@@ -58,7 +58,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     @Bean
-    JwtAuthHandler jwtAuthHandler() throws Exception {
+    private JwtAuthHandler jwtAuthHandler() throws Exception {
         return new JwtAuthHandler(authenticationManager());
     }
 
@@ -67,6 +67,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     private static final String[] URL_WHITE_LIST = { "/", "/userLogin", "/userLogout", "/favicon.ico" };
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 // 登录配置

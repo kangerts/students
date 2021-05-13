@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-05-13 09:39:03
+ * @LastEditTime: 2021-05-13 10:46:03
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;
@@ -58,14 +58,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     @Bean
-    private JwtAuthHandler jwtAuthHandler() throws Exception {
+    protected JwtAuthHandler jwtAuthHandler() throws Exception {
         return new JwtAuthHandler(authenticationManager());
     }
 
     /**
      * 白名单
      */
-    private static final String[] URL_WHITE_LIST = { "/", "/userLogin", "/userLogout", "/favicon.ico" };
+    @Autowired
+    private UrlWhiteListConfig urlWhiteListConfig;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -76,7 +77,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
                 // 配置拦截规则
-                .authorizeRequests().antMatchers(URL_WHITE_LIST).permitAll().anyRequest().authenticated()
+                .authorizeRequests().antMatchers(urlWhiteListConfig.getUrlWhiteListConfig()).permitAll().anyRequest()
+                .authenticated()
 
                 // 异常处理
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthEntryPointHandler)

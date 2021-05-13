@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-05-13 10:46:03
+ * @LastEditTime: 2021-05-13 10:49:35
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;
@@ -54,8 +54,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * JWT验证处理工具
      * 
-     * @return
-     * @throws Exception
+     * @return Jwt验证处理类对象
+     * @throws Exception 异常
      */
     @Bean
     protected JwtAuthHandler jwtAuthHandler() throws Exception {

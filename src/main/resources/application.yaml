@@ -82,6 +82,11 @@ spring:
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
 
+    # 国际化配置
+    # messages:
+    #     basename: messages,config.i18n.messages
+    #     fallback-to-system-locale: false
+
 # JWT相关配置
 jwt:
     secret: 5bq35Yev54ix5ZGo5aau
@@ -92,3 +97,10 @@ jwt:
 logging:
     file:
         path: ./sys/logs
+
+# APP自定义配置
+students:
+    # web方面配置
+    web:
+        # url白名单（免验证）
+        urlWhiteListConfig: /, /userLogin, /userLogout, /favicon.ico

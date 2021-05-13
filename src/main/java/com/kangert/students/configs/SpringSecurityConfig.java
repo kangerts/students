@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-05-12 11:47:38
+ * @LastEditTime: 2021-05-13 09:23:07
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;
@@ -65,7 +65,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * 白名单
      */
-    private static final String[] URL_WHITELIST = { "/", "/userLogin", "/userLogout", "/favicon.ico" };
+    private static final String[] URL_WHITE_LIST = { "/", "/userLogin", "/userLogout", "/favicon.ico" };
 
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
@@ -75,7 +75,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
                 // 配置拦截规则
-                .authorizeRequests().antMatchers(URL_WHITELIST).permitAll().anyRequest().authenticated()
+                .authorizeRequests().antMatchers(URL_WHITE_LIST).permitAll().anyRequest().authenticated()
 
                 // 异常处理
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthEntryPointHandler)

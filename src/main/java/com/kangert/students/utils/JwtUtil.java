@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 21:07:40
- * @LastEditTime: 2021-04-27 18:08:06
+ * @LastEditTime: 2021-05-14 17:18:58
  * @Description: JWT工具类
  */
 package com.kangert.students.utils;
@@ -16,9 +16,7 @@ import cn.hutool.core.date.DateUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.Data;
 
-@Data
 @Component
 @ConfigurationProperties(prefix = "jwt")
 public class JwtUtil {

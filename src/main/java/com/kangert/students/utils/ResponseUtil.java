@@ -2,33 +2,28 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 18:10:19
- * @LastEditTime: 2021-05-11 11:05:57
+ * @LastEditTime: 2021-05-14 17:19:37
  * @Description: 统一数据响应工具类
  */
 package com.kangert.students.utils;
 
 import java.io.Serializable;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class ResponseUtil implements Serializable {
     /**
      * 响应代码
      */
-    private int code = -1;
+    public int code = -1;
 
     /**
      * 响应信息
      */
-    private String message = "";
+    public String message = "";
 
     /**
      * 响应数据
      */
-    private Object data;
+    public Object data;
 
     /**
      * 成功响应
@@ -72,4 +67,29 @@ public class ResponseUtil implements Serializable {
         res.setData(null);
         return res;
     }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
 }

@@ -2,16 +2,11 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 20:11:02
- * @LastEditTime: 2021-04-27 20:12:15
+ * @LastEditTime: 2021-05-14 17:10:46
  * @Description:数据权限枚举
  */
 package com.kangert.students.common.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 public enum DataScopeEnum {
 
     /* 全部的数据权限 */
@@ -25,6 +20,19 @@ public enum DataScopeEnum {
 
     private final String value;
     private final String description;
+
+    private DataScopeEnum(String value, String description) {
+        this.value = value;
+        this.description = description;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     public static DataScopeEnum find(String val) {
         for (DataScopeEnum dataScopeEnum : DataScopeEnum.values()) {

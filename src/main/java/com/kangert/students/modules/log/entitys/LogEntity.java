@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-30 10:18:05
- * @LastEditTime: 2021-04-30 10:41:30
+ * @LastEditTime: 2021-05-14 17:06:38
  * @Description: 系统操作日志
  */
 package com.kangert.students.modules.log.entitys;
@@ -19,55 +19,147 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Entity
-@Getter
-@Setter
 @Table(name = "sys_log")
-@NoArgsConstructor
 public class LogEntity implements Serializable {
 
     @Id
     @Column(name = "log_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
     /** 操作用户 */
-    private String username;
+    public String username;
 
     /** 描述 */
-    private String description;
+    public String description;
 
     /** 方法名 */
-    private String method;
+    public String method;
 
     /** 参数 */
-    private String params;
+    public String params;
 
     /** 日志类型 */
-    private String logType;
+    public String logType;
 
     /** 请求ip */
-    private String requestIp;
+    public String requestIp;
 
     /** 地址 */
-    private String address;
+    public String address;
 
     /** 浏览器 */
-    private String browser;
+    public String browser;
 
     /** 请求耗时 */
-    private Long time;
+    public Long time;
 
     /** 异常详细 */
-    private byte[] exceptionDetail;
+    public byte[] exceptionDetail;
 
     /** 创建日期 */
     @CreationTimestamp
-    private Timestamp createTime;
+    public Timestamp createTime;
+
+    public LogEntity() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public void setMethod(String method) {
+        this.method = method;
+    }
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
+    }
+
+    public String getLogType() {
+        return logType;
+    }
+
+    public void setLogType(String logType) {
+        this.logType = logType;
+    }
+
+    public String getRequestIp() {
+        return requestIp;
+    }
+
+    public void setRequestIp(String requestIp) {
+        this.requestIp = requestIp;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBrowser() {
+        return browser;
+    }
+
+    public void setBrowser(String browser) {
+        this.browser = browser;
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
+    public byte[] getExceptionDetail() {
+        return exceptionDetail;
+    }
+
+    public void setExceptionDetail(byte[] exceptionDetail) {
+        this.exceptionDetail = exceptionDetail;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
 
     public LogEntity(String logType, Long time) {
         this.logType = logType;

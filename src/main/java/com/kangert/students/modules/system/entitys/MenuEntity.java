@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 20:13:13
- * @LastEditTime: 2021-05-14 17:04:52
+ * @LastEditTime: 2021-05-14 17:05:22
  * @Description: 菜单实体类
  */
 package com.kangert.students.modules.system.entitys;

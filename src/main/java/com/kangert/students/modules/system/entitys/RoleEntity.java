@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 19:48:13
- * @LastEditTime: 2021-04-30 13:37:26
+ * @LastEditTime: 2021-05-14 17:04:27
  * @Description: 角色实体类
  */
 package com.kangert.students.modules.system.entitys;
@@ -21,15 +21,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kangert.students.common.entitys.BaseEntity;
 import com.kangert.students.common.enums.DataScopeEnum;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 @Entity
 @Table(name = "sys_role")
 @JsonIgnoreProperties({ "roles" })
@@ -38,32 +32,88 @@ public class RoleEntity extends BaseEntity {
     @Column(name = "role_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    public Long id;
 
     @ManyToMany(mappedBy = "roles")
     // @ApiModelProperty(value = "用户", hidden = true)
-    private Set<UserEntity> users;
+    public Set<UserEntity> users;
 
     @ManyToMany
     @JoinTable(name = "sys_roles_menus", joinColumns = {
             @JoinColumn(name = "role_id", referencedColumnName = "role_id") }, inverseJoinColumns = {
                     @JoinColumn(name = "menu_id", referencedColumnName = "menu_id") })
     // @ApiModelProperty(value = "菜单", hidden = true)
-    private Set<MenuEntity> menus;
+    public Set<MenuEntity> menus;
 
     // @NotBlank
     // @ApiModelProperty(value = "名称", hidden = true)
-    private String name;
+    public String name;
 
     // @ApiModelProperty(value = "数据权限，全部 、 本级 、 自定义")
-    private String dataScope = DataScopeEnum.THIS_LEVEL.getValue();
+    public String dataScope = DataScopeEnum.THIS_LEVEL.getValue();
 
     @Column(name = "level")
     // @ApiModelProperty(value = "级别，数值越小，级别越大")
-    private Integer level = 3;
+    public Integer level = 3;
 
     // @ApiModelProperty(value = "描述")
-    private String description;
+    public String description;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<UserEntity> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<UserEntity> users) {
+        this.users = users;
+    }
+
+    public Set<MenuEntity> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Set<MenuEntity> menus) {
+        this.menus = menus;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDataScope() {
+        return dataScope;
+    }
+
+    public void setDataScope(String dataScope) {
+        this.dataScope = dataScope;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @Override
     public boolean equals(Object o) {

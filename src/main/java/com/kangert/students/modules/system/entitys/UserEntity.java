@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 14:40:58
- * @LastEditTime: 2021-05-11 14:21:52
+ * @LastEditTime: 2021-05-14 17:03:23
  * @Description: 用户尸体类
  */
 
@@ -30,11 +30,6 @@ import com.kangert.students.common.entitys.BaseEntity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 @Entity
 @Table(name = "sys_user")
 @SQLDelete(sql = "update sys_user set deleted = 1 where user_id = ?") // 逻辑删除（不真实删除）
@@ -46,53 +41,149 @@ public class UserEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // @ApiModelProperty(value = "ID", hidden = true)
     @JsonProperty("Uid")
-    private Long id;
+    public Long id;
 
     @ManyToMany
     // @ApiModelProperty(value = "用户角色")
     @JoinTable(name = "sys_users_roles", joinColumns = {
             @JoinColumn(name = "user_id", referencedColumnName = "user_id") }, inverseJoinColumns = {
                     @JoinColumn(name = "role_id", referencedColumnName = "role_id") })
-    private Set<RoleEntity> roles;
+    public Set<RoleEntity> roles;
 
     @NotBlank
     @Column(unique = true)
     // @ApiModelProperty(value = "用户名称")
     @JsonProperty("Uname")
-    private String username;
+    public String username;
 
     @NotBlank
     // @ApiModelProperty(value = "用户昵称")
     @JsonProperty("UnickName")
-    private String nickName;
+    public String nickName;
 
     @Email
     @NotBlank
     // @ApiModelProperty(value = "邮箱")
-    private String email;
+    public String email;
 
     @NotBlank
     // @ApiModelProperty(value = "电话号码")
-    private String phone;
+    public String phone;
 
     // @ApiModelProperty(value = "用户性别")
-    private String gender;
+    public String gender;
 
     // @ApiModelProperty(value = "头像真实名称", hidden = true)
-    private String avatarName;
+    public String avatarName;
 
     // @ApiModelProperty(value = "头像存储的路径", hidden = true)
-    private String avatarPath;
+    public String avatarPath;
 
     // @ApiModelProperty(value = "密码")
-    private String password;
+    public String password;
 
     @NotNull
     // @ApiModelProperty(value = "是否启用")
-    private Boolean enabled;
+    public Boolean enabled;
 
     // @ApiModelProperty(value = "是否为admin账号", hidden = true)
-    private Boolean isAdmin = false;
+    public Boolean isAdmin = false;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleEntity> roles) {
+        this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAvatarName() {
+        return avatarName;
+    }
+
+    public void setAvatarName(String avatarName) {
+        this.avatarName = avatarName;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
+    }
+
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -8,7 +8,7 @@
 package com.kangert.students.modules.system.controllers;
 
 import com.kangert.students.modules.system.entitys.UserEntity;
-import com.kangert.students.modules.system.services.IUserService;
+import com.kangert.students.modules.system.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @GetMapping(value = "/addUser")
     public String addUser() {

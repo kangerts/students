@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:51:16
- * @LastEditTime: 2021-05-14 13:33:41
+ * @LastEditTime: 2021-05-15 19:32:21
  * @Description: 用户接口实现类
  */
 package com.kangert.students.modules.system.services.impl;
@@ -15,8 +15,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import com.kangert.students.modules.system.entitys.UserEntity;
-import com.kangert.students.modules.system.repositorys.IUserRepository;
-import com.kangert.students.modules.system.services.IUserService;
+import com.kangert.students.modules.system.repositorys.UserRepository;
+import com.kangert.students.modules.system.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,10 +26,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private IUserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public String addUser() {

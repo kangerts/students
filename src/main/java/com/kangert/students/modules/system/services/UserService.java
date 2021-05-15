@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:50:19
- * @LastEditTime: 2021-05-14 16:47:52
+ * @LastEditTime: 2021-05-15 19:31:56
  * @Description: 用户服务接口
  */
 
@@ -12,7 +12,7 @@ import com.kangert.students.modules.system.entitys.UserEntity;
 
 import org.springframework.data.domain.Page;
 
-public interface IUserService {
+public interface UserService {
     String addUser();
 
     Page<UserEntity> getUsers(int page, int pageSize);

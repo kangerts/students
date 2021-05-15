@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 21:07:40
- * @LastEditTime: 2021-05-14 17:18:58
+ * @LastEditTime: 2021-05-15 12:21:26
  * @Description: JWT工具类
  */
 package com.kangert.students.utils;
@@ -75,5 +75,13 @@ public class JwtUtil {
      */
     public boolean isTokenExpire(Claims claims) {
         return claims.getExpiration().before(new Date());
+    }
+    
+    public String getHeader(){
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 }

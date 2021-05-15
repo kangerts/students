@@ -17,7 +17,6 @@ import javax.persistence.criteria.Root;
 import com.kangert.students.modules.system.entitys.UserEntity;
 import com.kangert.students.modules.system.repositorys.IUserRepository;
 import com.kangert.students.modules.system.services.IUserService;
-import com.kangert.students.utils.ResponseUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

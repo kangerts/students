@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 18:10:19
- * @LastEditTime: 2021-05-14 17:19:37
+ * @LastEditTime: 2021-05-15 13:33:03
  * @Description: 统一数据响应工具类
  */
 package com.kangert.students.utils;
@@ -13,17 +13,17 @@ public class ResponseUtil implements Serializable {
     /**
      * 响应代码
      */
-    public int code = -1;
+    private int code = -1;
 
     /**
      * 响应信息
      */
-    public String message = "";
+    private String message = "";
 
     /**
      * 响应数据
      */
-    public Object data;
+    private Object data = null;
 
     /**
      * 成功响应
@@ -68,28 +68,15 @@ public class ResponseUtil implements Serializable {
         return res;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
+    private void setCode(int code) {
         this.code = code;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
+    private void setMessage(String message) {
         this.message = message;
     }
 
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
+    private void setData(Object data) {
         this.data = data;
     }
-
 }

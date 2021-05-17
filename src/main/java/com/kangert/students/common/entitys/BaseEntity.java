@@ -23,27 +23,42 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity implements Serializable {
+
     @CreatedBy
     @Column(name = "create_by", updatable = false)
     // @ApiModelProperty(value = "创建人", hidden = true)
+    /**
+     * 创建人
+     */
     public String createBy;
 
     @LastModifiedBy
     @Column(name = "update_by")
     // @ApiModelProperty(value = "更新人", hidden = true)
+    /**
+     * 更新人
+     */
     public String updateBy;
 
     @CreationTimestamp
     @Column(name = "create_time", updatable = false)
     // @ApiModelProperty(value = "创建时间", hidden = true)
+    /**
+     * 创建时间
+     */
     public Timestamp createTime;
 
     @UpdateTimestamp
     @Column(name = "update_time")
     // @ApiModelProperty(value = "更新时间", hidden = true)
+    /**
+     * 更新时间
+     */
     public Timestamp updateTime;
 
-    // 删除状态（0：正常，1：删除）
+    /**
+     * 删除状态（0：正常，1：删除）
+     */
     public int deleted = 0;
 
     public String getCreateBy() {

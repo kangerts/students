@@ -29,7 +29,7 @@ public class StudentsApplication {
 
     @GetMapping("/")
     public ResponseUtil serverInfo() {
-        Map<String, Object> data = new HashMap<String, Object>();
+        Map<String, Object> data = new HashMap<String, Object>(16);
         data.put("serverVersion", "v0.0.1");
         data.put("serverTime", DateUtil.now());
         return ResponseUtil.ok("服务端运行成功！", data);

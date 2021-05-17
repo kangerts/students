@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 20:13:13
- * @LastEditTime: 2021-05-14 17:05:22
+ * @LastEditTime: 2021-05-15 21:06:50
  * @Description: 菜单实体类
  */
 package com.kangert.students.modules.system.entitys;
@@ -30,53 +30,98 @@ public class MenuEntity extends BaseEntity {
     // @ApiModelProperty(value = "ID", hidden = true)
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    /**
+     * 主键
+     */
     public Long id;
 
     // @JSONField(serialize = false)
     @ManyToMany(mappedBy = "menus")
     // @ApiModelProperty(value = "菜单角色")
+    /**
+     * 角色
+     */
     public Set<RoleEntity> roles;
 
     // @ApiModelProperty(value = "菜单标题")
+    /**
+     * 菜单标题
+     */
     public String title;
 
     @Column(name = "componentName")
     // @ApiModelProperty(value = "菜单组件名称")
+    /**
+     * 菜单组件名称
+     */
     public String componentName;
 
     // @ApiModelProperty(value = "排序")
+    /**
+     * 菜单顺序
+     */
     public Integer menuSort = 999;
 
     // @ApiModelProperty(value = "组件路径")
+    /**
+     * 菜单路径
+     */
     public String component;
 
     // @ApiModelProperty(value = "路由地址")
+    /**
+     * 路由地址
+     */
     public String path;
 
     // @ApiModelProperty(value = "菜单类型，目录、菜单、按钮")
+    /**
+     * 菜单类型
+     */
     public Integer type;
 
     // @ApiModelProperty(value = "权限标识")
+    /**
+     * 权限标识
+     */
     public String permission;
 
     // @ApiModelProperty(value = "菜单图标")
+    /**
+     * 菜单图标
+     */
     public String icon;
 
     @Column(columnDefinition = "bit(1) default 0")
     // @ApiModelProperty(value = "缓存")
+    /**
+     * 缓存
+     */
     public Boolean cache;
 
     @Column(columnDefinition = "bit(1) default 0")
     // @ApiModelProperty(value = "是否隐藏")
+    /**
+     * 是否隐藏
+     */
     public Boolean hidden;
 
     // @ApiModelProperty(value = "上级菜单")
+    /**
+     * 上级菜单
+     */
     public Long pid;
 
     // @ApiModelProperty(value = "子节点数目", hidden = true)
+    /**
+     * 子节点数量
+     */
     public Integer subCount = 0;
 
     // @ApiModelProperty(value = "外链菜单")
+    /**
+     * 外链菜单
+     */
     public Boolean iFrame;
 
     public Long getId() {

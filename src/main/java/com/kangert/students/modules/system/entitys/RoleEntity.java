@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 19:48:13
- * @LastEditTime: 2021-05-14 17:04:27
+ * @LastEditTime: 2021-05-15 21:08:54
  * @Description: 角色实体类
  */
 package com.kangert.students.modules.system.entitys;
@@ -32,10 +32,16 @@ public class RoleEntity extends BaseEntity {
     @Column(name = "role_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // @ApiModelProperty(value = "ID", hidden = true)
+    /**
+     * 主键
+     */
     public Long id;
 
     @ManyToMany(mappedBy = "roles")
     // @ApiModelProperty(value = "用户", hidden = true)
+    /**
+     * 用户
+     */
     public Set<UserEntity> users;
 
     @ManyToMany
@@ -43,20 +49,35 @@ public class RoleEntity extends BaseEntity {
             @JoinColumn(name = "role_id", referencedColumnName = "role_id") }, inverseJoinColumns = {
                     @JoinColumn(name = "menu_id", referencedColumnName = "menu_id") })
     // @ApiModelProperty(value = "菜单", hidden = true)
+    /**
+     * 菜单
+     */
     public Set<MenuEntity> menus;
 
     // @NotBlank
     // @ApiModelProperty(value = "名称", hidden = true)
+    /**
+     * 名称
+     */
     public String name;
 
     // @ApiModelProperty(value = "数据权限，全部 、 本级 、 自定义")
+    /**
+     * 数据权限
+     */
     public String dataScope = DataScopeEnum.THIS_LEVEL.getValue();
 
     @Column(name = "level")
     // @ApiModelProperty(value = "级别，数值越小，级别越大")
+    /**
+     * 级别
+     */
     public Integer level = 3;
 
     // @ApiModelProperty(value = "描述")
+    /**
+     * 描述
+     */
     public String description;
 
     public Long getId() {

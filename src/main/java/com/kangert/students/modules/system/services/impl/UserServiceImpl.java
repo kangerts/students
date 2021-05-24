@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:51:16
- * @LastEditTime: 2021-05-24 15:03:24
+ * @LastEditTime: 2021-05-24 15:14:31
  * @Description: 用户接口实现类
  */
 package com.kangert.students.modules.system.services.impl;
@@ -81,10 +81,8 @@ public class UserServiceImpl implements UserService {
             public Predicate toPredicate(Root<UserEntity> root, CriteriaQuery<?> query,
                     CriteriaBuilder criteriaBuilder) {
                 // TODO Auto-generated method stub
-
                 return null;
             }
-
         }, pageable);
     }
 }

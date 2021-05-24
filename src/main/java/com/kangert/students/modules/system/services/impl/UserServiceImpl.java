@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:51:16
- * @LastEditTime: 2021-05-15 20:10:48
+ * @LastEditTime: 2021-05-24 15:03:24
  * @Description: 用户接口实现类
  */
 package com.kangert.students.modules.system.services.impl;
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String addUser() {
-        String[] a = { "1", "2", "3", "4", "5" };
+        String[] a = new String[5];
         for (int i = 0; i <= a.length; i++) {
             UserEntity user = new UserEntity();
             user.setUsername("username" + i);

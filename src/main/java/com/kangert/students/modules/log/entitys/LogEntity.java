@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-30 10:18:05
- * @LastEditTime: 2021-05-14 17:06:38
+ * @LastEditTime: 2021-06-11 09:39:25
  * @Description: 系统操作日志
  */
 package com.kangert.students.modules.log.entitys;
@@ -22,6 +22,11 @@ import org.hibernate.annotations.CreationTimestamp;
 @Entity
 @Table(name = "sys_log")
 public class LogEntity implements Serializable {
+
+    public LogEntity(String logType, Long time) {
+        this.logType = logType;
+        this.time = time;
+    }
 
     @Id
     @Column(name = "log_id")
@@ -159,10 +164,5 @@ public class LogEntity implements Serializable {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
-    }
-
-    public LogEntity(String logType, Long time) {
-        this.logType = logType;
-        this.time = time;
     }
 }

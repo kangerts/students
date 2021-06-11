@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-30 10:18:05
- * @LastEditTime: 2021-06-11 09:39:25
+ * @LastEditTime: 2021-06-11 09:40:12
  * @Description: 系统操作日志
  */
 package com.kangert.students.modules.log.entitys;
@@ -20,7 +20,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "sys_log")
+@Table(name = "log_logs")
 public class LogEntity implements Serializable {
 
     public LogEntity(String logType, Long time) {

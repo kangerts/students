@@ -2,41 +2,45 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 18:10:19
- * @LastEditTime: 2021-05-15 15:54:20
+ * @LastEditTime: 2021-06-23 16:37:36
  * @Description: 统一数据响应工具类
  */
 package com.kangert.students.utils;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-public class ResponseUtil implements Serializable {
+import org.springframework.stereotype.Component;
+
+@JsonPropertyOrder(value = { "code", "msg", "data" })
+@Component
+public class ResponseUtil {
     /**
      * 响应代码
      */
-    private int code = -1;
+    public int code = -1;
 
     /**
      * 响应信息
      */
-    private String message = "";
+    public String msg = "";
 
     /**
      * 响应数据
      */
-    private Object data = null;
+    public Object data = null;
 
     /**
      * 成功响应
      * 
      * @param data 响应的数据
+     * @return
      * @return 响应对象
      */
-    public static ResponseUtil ok(String message) {
-        ResponseUtil res = new ResponseUtil();
-        res.setCode(200);
-        res.setMessage("".equals(message) ? "操作成功！" : message);
-        res.setData(null);
-        return res;
+    public String ok(String msg) {
+        this.setCode(200);
+        this.setMsg("".equals(msg) ? "操作成功！" : msg);
+        this.setData(null);
+        return JacksonUtil.serialize(this);
     }
 
     /**
@@ -46,12 +50,11 @@ public class ResponseUtil implements Serializable {
      * @param data    响应的数据
      * @return 响应对象
      */
-    public static ResponseUtil ok(String message, Object data) {
-        ResponseUtil res = new ResponseUtil();
-        res.setCode(200);
-        res.setMessage("".equals(message) ? "操作成功！" : message);
-        res.setData(data);
-        return res;
+    public String ok(String msg, Object data) {
+        this.setCode(200);
+        this.setMsg("".equals(msg) ? "操作成功！" : msg);
+        this.setData(data);
+        return JacksonUtil.serialize(this);
     }
 
     /**
@@ -60,20 +63,19 @@ public class ResponseUtil implements Serializable {
      * @param message 响应的信息
      * @return 响应对象
      */
-    public static ResponseUtil no(String message) {
-        ResponseUtil res = new ResponseUtil();
-        res.setCode(-1);
-        res.setMessage("".equals(message) ? "操作失败！" : message);
-        res.setData(null);
-        return res;
+    public String no(String msg) {
+        this.setCode(-1);
+        this.setMsg("".equals(msg) ? "操作失败！" : msg);
+        this.setData(null);
+        return JacksonUtil.serialize(this);
     }
 
     private void setCode(int code) {
         this.code = code;
     }
 
-    private void setMessage(String message) {
-        this.message = message;
+    private void setMsg(String msg) {
+        this.msg = msg;
     }
 
     private void setData(Object data) {

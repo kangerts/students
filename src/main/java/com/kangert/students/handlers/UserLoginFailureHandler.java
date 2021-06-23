@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 20:28:31
- * @LastEditTime: 2021-04-28 13:34:39
+ * @LastEditTime: 2021-06-23 16:38:26
  * @Description: 用户登录失败处理工具类
  */
 package com.kangert.students.handlers;
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kangert.students.utils.ResponseUtil;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -25,14 +26,16 @@ import cn.hutool.json.JSONUtil;
 @Configuration
 public class UserLoginFailureHandler implements AuthenticationFailureHandler {
 
+    @Autowired
+    ResponseUtil responseUtil;
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
             AuthenticationException exception) throws IOException, ServletException {
         response.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = response.getOutputStream();
         // 响应
-        ResponseUtil responseUtil = ResponseUtil.no("登录失败：" + exception.getMessage());
-        outputStream.write(JSONUtil.toJsonStr(responseUtil).getBytes("UTF-8"));
+        outputStream.write(JSONUtil.toJsonStr(responseUtil.no("登录失败：" + exception.getMessage())).getBytes("UTF-8"));
         outputStream.flush();
         outputStream.close();
     }

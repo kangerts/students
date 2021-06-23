@@ -2,12 +2,14 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:51:16
- * @LastEditTime: 2021-05-24 15:14:31
+ * @LastEditTime: 2021-06-23 17:00:52
  * @Description: 用户接口实现类
  */
 package com.kangert.students.modules.system.services.impl;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -56,8 +58,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updateUser(String oldName, String username) {
-        List<UserEntity> users = userRepository.findByUsername(oldName);
+    public String updateUserName(Long id, String username) {
+        List<UserEntity> users = userRepository.findById(id).stream().collect(Collectors.toList());
         if (users.size() > 0) {
             UserEntity user = users.get(0);
             user.setUsername(username);

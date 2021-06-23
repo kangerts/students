@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 20:46:14
- * @LastEditTime: 2021-04-28 13:34:25
+ * @LastEditTime: 2021-06-23 16:41:20
  * @Description: 用户登录成功处理工具类
  */
 package com.kangert.students.handlers;
@@ -30,6 +30,9 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
     JwtUtil jwtUtil;
 
+    @Autowired
+    ResponseUtil responseUtil;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
@@ -39,8 +42,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
         String jwt = jwtUtil.getJwtToken(authentication.getName());
         response.setHeader(jwtUtil.getHeader(), jwt);
         // 响应
-        ResponseUtil responseUtil = ResponseUtil.ok("登录成功！");
-        outputStream.write(JSONUtil.toJsonStr(responseUtil).getBytes("UTF-8"));
+        outputStream.write(JSONUtil.toJsonStr(responseUtil.ok("登录成功！")).getBytes("UTF-8"));
         outputStream.flush();
         outputStream.close();
     }

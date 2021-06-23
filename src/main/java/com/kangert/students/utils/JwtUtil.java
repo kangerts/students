@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 21:07:40
- * @LastEditTime: 2021-05-15 12:21:26
+ * @LastEditTime: 2021-06-23 16:47:24
  * @Description: JWT工具类
  */
 package com.kangert.students.utils;
@@ -10,14 +10,14 @@ package com.kangert.students.utils;
 import java.util.Date;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import cn.hutool.core.date.DateUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Component
+@Configuration
 @ConfigurationProperties(prefix = "jwt")
 public class JwtUtil {
 
@@ -76,12 +76,29 @@ public class JwtUtil {
     public boolean isTokenExpire(Claims claims) {
         return claims.getExpiration().before(new Date());
     }
-    
-    public String getHeader(){
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
+
+    public long getExpireSeconds() {
+        return expireSeconds;
+    }
+
+    public void setExpireSeconds(long expireSeconds) {
+        this.expireSeconds = expireSeconds;
+    }
+
+    public String getHeader() {
         return header;
     }
 
     public void setHeader(String header) {
         this.header = header;
     }
+
 }

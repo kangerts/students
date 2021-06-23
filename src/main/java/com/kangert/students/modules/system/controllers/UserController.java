@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:53:42
- * @LastEditTime: 2021-05-24 15:18:05
+ * @LastEditTime: 2021-06-23 17:02:02
  * @Description: 用户控制器接口
  */
 package com.kangert.students.modules.system.controllers;
@@ -34,7 +34,7 @@ public class UserController {
         return "成功";
     }
 
-    @GetMapping(value = "/getUser")
+    @GetMapping(value = "/list")
     public Page<UserEntity> getUsers(@RequestParam int page, @RequestParam int pageSize) {
         return userService.getUsers(page, pageSize);
     }
@@ -45,13 +45,13 @@ public class UserController {
         return "删除ID：" + id + "成功！";
     }
 
-    @DeleteMapping(value = "/deleteAllUser")
+    @DeleteMapping(value = "/del/all")
     public String deleteAllUser() {
         return userService.deleteAllUser();
     }
 
-    @PutMapping(value = "/{oldName}/{username}")
-    public String updateUser(@PathVariable("oldName") String oldName, @PathVariable("username") String username) {
-        return userService.updateUser(oldName, username);
+    @PutMapping(value = "/{id}/{username}")
+    public String updateUser(@PathVariable("id") Long id, @PathVariable("username") String username) {
+        return userService.updateUserName(id, username);
     }
 }

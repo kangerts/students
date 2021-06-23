@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-05-13 10:49:35
+ * @LastEditTime: 2021-06-23 16:31:31
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;
@@ -16,6 +16,7 @@ import com.kangert.students.handlers.UserLoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -62,23 +63,29 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtAuthHandler(authenticationManager());
     }
 
-    /**
-     * 白名单
-     */
-    @Autowired
-    private UrlWhiteListConfig urlWhiteListConfig;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 // 登录配置
                 .formLogin().successHandler(userLoginSuccessHandler).failureHandler(userLoginFailureHandler).and()
-                // 禁用session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
-                // 配置拦截规则
-                .authorizeRequests().antMatchers(urlWhiteListConfig.getUrlWhiteListConfig()).permitAll().anyRequest()
-                .authenticated()
+                // 禁用session
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+                .and().authorizeRequests()
+
+                // 放行静态资源
+                .antMatchers(HttpMethod.GET, "/favicon.ico", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js")
+                .permitAll()
+
+                // 放行swagger 文档
+                .antMatchers("/doc.html", "/swagger-resources/**", "/*/api-docs").permitAll()
+
+                // 阿里巴巴 druid
+                .antMatchers("/DruidInfo/**").permitAll()
+
+                // 配置拦截规则（白名单）
+                .antMatchers("/", "/userLogin").permitAll().anyRequest().authenticated()
 
                 // 异常处理
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthEntryPointHandler)

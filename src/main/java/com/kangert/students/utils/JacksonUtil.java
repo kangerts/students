@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-05-12 17:50:13
- * @LastEditTime: 2021-05-12 18:17:28
+ * @LastEditTime: 2021-06-11 13:16:21
  * @Description: 对象序列化和反序列化
  */
 package com.kangert.students.utils;
@@ -21,7 +21,7 @@ public final class JacksonUtil {
     public final static ObjectMapper OBJECT_MAPPER;
 
     static {
-        OBJECT_MAPPER = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        OBJECT_MAPPER = new ObjectMapper().setSerializationInclusion(JsonInclude.Include.USE_DEFAULTS);
     }
 
     /**
@@ -55,5 +55,4 @@ public final class JacksonUtil {
         }
         return null;
     }
-
 }

@@ -97,10 +97,3 @@ jwt:
 logging:
     file:
         path: ./sys/logs
-
-# APP自定义配置
-students:
-    # web方面配置
-    web:
-        # url白名单（免验证）
-        urlWhiteListConfig: /, /userLogin, /userLogout, /favicon.ico

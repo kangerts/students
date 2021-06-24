@@ -2,10 +2,12 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:51:16
- * @LastEditTime: 2021-06-24 10:48:57
+ * @LastEditTime: 2021-06-24 18:23:00
  * @Description: 用户接口实现类
  */
 package com.kangert.students.modules.system.services.impl;
+
+import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,6 +17,7 @@ import javax.persistence.criteria.Root;
 import com.kangert.students.modules.system.entitys.UserEntity;
 import com.kangert.students.modules.system.repositorys.UserRepository;
 import com.kangert.students.modules.system.services.UserService;
+import com.kangert.students.utils.ResponseUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,8 +33,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    ResponseUtil responseUtil;
+
     @Override
-    public String addUser() {
+    public ResponseUtil addUser() {
         String[] a = new String[5];
         for (int i = 0; i <= a.length; i++) {
             UserEntity user = new UserEntity();
@@ -45,25 +51,25 @@ public class UserServiceImpl implements UserService {
             user.setNickName("nickName" + i);
             userRepository.save(user);
         }
-        return "添加成功！";
+        return responseUtil.ok("添加成功！");
     }
 
     @Override
-    public String deleteById(Long id) {
+    public ResponseUtil deleteById(Long id) {
         userRepository.deleteById(id);
-        return "删除成功！";
+        return responseUtil.ok("删除成功：" + id);
     }
 
     @Override
-    public String deleteAllUser() {
+    public ResponseUtil deleteAllUser() {
         userRepository.deleteAll();
-        return "删除成功！";
+        return responseUtil.ok("删除成功！");
     }
 
     @Override
-    public Page<UserEntity> getUsers(int currentPage, int pageSize) {
+    public ResponseUtil getUsers(int currentPage, int pageSize) {
         Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.ASC, "id"));
-        return userRepository.findAll(new Specification<UserEntity>() {
+        Page<UserEntity> userList = userRepository.findAll(new Specification<UserEntity>() {
 
             @Override
             public Predicate toPredicate(Root<UserEntity> root, CriteriaQuery<?> query,
@@ -72,5 +78,12 @@ public class UserServiceImpl implements UserService {
                 return null;
             }
         }, pageable);
+        return responseUtil.ok("获取用户成功！", userList);
+    }
+
+    @Override
+    public ResponseUtil updateUser(UserEntity userEntity) {
+        userRepository.save(userEntity);
+        return responseUtil.ok("用户数据更改成功！");
     }
 }

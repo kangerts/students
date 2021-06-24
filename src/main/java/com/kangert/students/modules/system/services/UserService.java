@@ -2,15 +2,14 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:50:19
- * @LastEditTime: 2021-06-24 09:55:14
+ * @LastEditTime: 2021-06-24 18:22:29
  * @Description: 用户服务接口
  */
 
 package com.kangert.students.modules.system.services;
 
 import com.kangert.students.modules.system.entitys.UserEntity;
-
-import org.springframework.data.domain.Page;
+import com.kangert.students.utils.ResponseUtil;
 
 public interface UserService {
     /**
@@ -18,7 +17,7 @@ public interface UserService {
      * 
      * @return 操作信息
      */
-    String addUser();
+    ResponseUtil addUser();
 
     /**
      * 获取用户数据（分页）
@@ -27,7 +26,7 @@ public interface UserService {
      * @param pageSize 每页大小
      * @return 分页后的用户数据
      */
-    Page<UserEntity> getUsers(int page, int pageSize);
+    ResponseUtil getUsers(int page, int pageSize);
 
     /**
      * 通过ID删除用户
@@ -35,12 +34,20 @@ public interface UserService {
      * @param id 用户ID
      * @return 操作信息
      */
-    String deleteById(Long id);
+    ResponseUtil deleteById(Long id);
 
     /**
      * 删除所有用户
      * 
      * @return 操作信息
      */
-    String deleteAllUser();
+    ResponseUtil deleteAllUser();
+
+    /**
+     * 更新用户信息
+     * 
+     * @param userEntity 用户数据
+     * @return 返回更改信息
+     */
+    ResponseUtil updateUser(UserEntity userEntity);
 }

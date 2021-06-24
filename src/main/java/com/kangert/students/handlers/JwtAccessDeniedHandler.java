@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 18:25:57
- * @LastEditTime: 2021-06-24 10:44:58
+ * @LastEditTime: 2021-06-24 18:08:23
  * @Description: JWT访问拒绝处理类
  */
 package com.kangert.students.handlers;
@@ -21,6 +21,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
+import cn.hutool.json.JSONUtil;
+
 @Component
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
 
@@ -31,7 +33,8 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response,
             AccessDeniedException accessDeniedException) throws IOException, ServletException {
         ServletOutputStream outputStream = response.getOutputStream();
-        outputStream.write(responseUtil.no("权限不足：" + accessDeniedException.getMessage()).getBytes());
+        outputStream
+                .write(JSONUtil.toJsonStr(responseUtil.no("权限不足：" + accessDeniedException.getMessage())).getBytes());
         outputStream.flush();
         outputStream.close();
     }

@@ -2,13 +2,10 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:51:16
- * @LastEditTime: 2021-06-23 17:06:23
+ * @LastEditTime: 2021-06-24 10:48:57
  * @Description: 用户接口实现类
  */
 package com.kangert.students.modules.system.services.impl;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -23,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -57,17 +55,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updateUserName(Long id, String username) {
-        List<UserEntity> users = userRepository.findById(id).stream().collect(Collectors.toList());
-        if (users.size() > 0) {
-            UserEntity user = users.get(0);
-            user.setUsername(username);
-            userRepository.save(user);
-        }
-        return "成功！";
-    }
-
-    @Override
     public String deleteAllUser() {
         userRepository.deleteAll();
         return "删除成功！";
@@ -75,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserEntity> getUsers(int currentPage, int pageSize) {
-        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.ASC, "id"));
         return userRepository.findAll(new Specification<UserEntity>() {
 
             @Override

@@ -2,6 +2,13 @@ server:
     address: 127.0.0.1
     port: 8088
 
+    servlet:
+        # 设置编码
+        encoding:
+            enabled: true
+            charset: utf-8
+            force: true
+
 spring:
     # 数据库
     datasource:

@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:53:42
- * @LastEditTime: 2021-06-24 09:31:29
+ * @LastEditTime: 2021-06-24 09:54:35
  * @Description: 用户控制器接口
  */
 package com.kangert.students.modules.system.controllers;
@@ -15,8 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -61,13 +59,5 @@ public class UserController {
     @DeleteMapping(value = "/del/all")
     public String deleteAllUser() {
         return userService.deleteAllUser();
-    }
-
-    @ApiOperation(value = "用户名更改")
-   @ApiImplicitParams(value = { @ApiImplicitParam(name = "id", value = "用户ID", required = true),
-            @ApiImplicitParam(name = "username", value = "更改额名称", required = true) })
-    @PutMapping(value = "/{id}/{username}")
-    public String updateUser(@PathVariable("id") Long id, @PathVariable("username") String username) {
-        return userService.updateUserName(id, username);
     }
 }

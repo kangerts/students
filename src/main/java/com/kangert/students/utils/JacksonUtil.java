@@ -2,13 +2,15 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-05-12 17:50:13
- * @LastEditTime: 2021-06-11 13:16:21
+ * @LastEditTime: 2021-06-24 10:28:49
  * @Description: 对象序列化和反序列化
  */
 package com.kangert.students.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.json.JsonWriteFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.boot.jackson.JsonComponent;

@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:50:19
- * @LastEditTime: 2021-06-23 17:01:25
+ * @LastEditTime: 2021-06-24 09:55:14
  * @Description: 用户服务接口
  */
 
@@ -36,15 +36,6 @@ public interface UserService {
      * @return 操作信息
      */
     String deleteById(Long id);
-
-    /**
-     * 用户名更新
-     * 
-     * @param id       用户ID
-     * @param username 用户名称
-     * @return
-     */
-    String updateUserName(Long id, String username);
 
     /**
      * 删除所有用户

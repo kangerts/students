@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-06-23 16:00:04
- * @LastEditTime: 2021-06-23 18:36:28
+ * @LastEditTime: 2021-06-24 09:36:42
  * @Description:Swagger配置依赖 package com.kangert.students.configs;
  */
 package com.kangert.students.configs;

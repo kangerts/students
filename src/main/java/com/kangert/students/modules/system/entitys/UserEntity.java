@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 14:40:58
- * @LastEditTime: 2021-05-15 21:13:48
+ * @LastEditTime: 2021-06-24 09:33:18
  * @Description: 用户尸体类
  */
 
@@ -30,100 +30,65 @@ import com.kangert.students.common.entitys.BaseEntity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "sys_user")
-@SQLDelete(sql = "update sys_user set deleted = 1 where user_id = ?") // 逻辑删除（不真实删除）
-@Where(clause = "deleted = 0") // 过滤掉逻辑删除的
-
+@SQLDelete(sql = "update sys_user set deleted = 1 where user_id = ?") 
+@Where(clause = "deleted = 0") 
 public class UserEntity extends BaseEntity {
 
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // @ApiModelProperty(value = "ID", hidden = true)
+    @ApiModelProperty(value = "用户ID")
     @JsonProperty("Uid")
-    /**
-     * 
-     */
     public Long id;
 
     @ManyToMany
-    // @ApiModelProperty(value = "用户角色")
+    @ApiModelProperty(value = "用户角色")
     @JoinTable(name = "sys_users_roles", joinColumns = {
             @JoinColumn(name = "user_id", referencedColumnName = "user_id") }, inverseJoinColumns = {
                     @JoinColumn(name = "role_id", referencedColumnName = "role_id") })
-    /**
-     * 用户角色
-     */
     public Set<RoleEntity> roles;
 
     @NotBlank
     @Column(unique = true)
-    // @ApiModelProperty(value = "用户名称")
+    @ApiModelProperty(value = "用户名称")
     @JsonProperty("Uname")
-    /**
-     * 用户名称
-     */
     public String username;
 
     @NotBlank
-    // @ApiModelProperty(value = "用户昵称")
+    @ApiModelProperty(value = "用户昵称")
     @JsonProperty("UnickName")
-    /**
-     * 用户昵称
-     */
     public String nickName;
 
     @Email
     @NotBlank
-    // @ApiModelProperty(value = "邮箱")
-    /**
-     * 邮箱
-     */
+    @ApiModelProperty(value = "邮箱")
     public String email;
 
     @NotBlank
-    // @ApiModelProperty(value = "电话号码")
-    /**
-     * 电话号码
-     */
+    @ApiModelProperty(value = "电话号码")
     public String phone;
 
-    // @ApiModelProperty(value = "用户性别")
-    /**
-     * 用户性别
-     */
+    @ApiModelProperty(value = "用户性别")
     public String gender;
 
-    // @ApiModelProperty(value = "头像真实名称", hidden = true)
-    /**
-     * 头像真实名称
-     */
+    @ApiModelProperty(value = "头像真实名称", hidden = true)
     public String avatarName;
 
-    // @ApiModelProperty(value = "头像存储的路径", hidden = true)
-    /**
-     * 头像存储的路径 
-     */
+    @ApiModelProperty(value = "头像存储的路径", hidden = true)
     public String avatarPath;
 
-    // @ApiModelProperty(value = "密码")
-    /**
-     * 密码
-     */
+    @ApiModelProperty(value = "密码")
     public String password;
 
     @NotNull
-    // @ApiModelProperty(value = "是否启用")
-    /**
-     * 是否启用
-     */
+    @ApiModelProperty(value = "是否启用")
     public Boolean enabled;
 
-    // @ApiModelProperty(value = "是否为admin账号", hidden = true)
-    /**
-     * 是否为admin账号
-     */
+    @ApiModelProperty(value = "是否为admin账号", hidden = true)
     public Boolean isAdmin = false;
 
     public Long getId() {

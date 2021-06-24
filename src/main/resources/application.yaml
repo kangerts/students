@@ -97,3 +97,40 @@ jwt:
 logging:
     file:
         path: ./sys/logs
+
+# API文档配置
+knife4j:
+    enable: true
+    documents:
+        - group: v1.0
+          name: 接口签名
+          locations: classpath:sign/*
+    setting:
+        language: zh-CN
+        enableSwaggerModels: false
+        enableDocumentManage: true
+        swaggerModelName: 实体类列表
+        enableVersion: false
+        enableReloadCacheParameter: false
+        enableAfterScript: true
+        enableFilterMultipartApiMethodType: POST
+        enableFilterMultipartApis: false
+        enableRequestCache: true
+        enableHost: false
+        enableHostText: 127.0.0.1:8088
+        enableHomeCustom: false
+        homeCustomLocation: classpath:markdown/home.md
+        enableSearch: true
+        enableFooter: false
+        enableFooterCustom: true
+        footerCustomContent: Apache License 2.0 | Copyright  2021-[kangert](https://github.com/kangerts)
+        enableDynamicParameter: false
+        enableDebug: true
+        enableOpenApi: false
+        enableGroup: true
+    cors: false
+    production: false
+    basic:
+        enable: false
+        username: test
+        password: 12313

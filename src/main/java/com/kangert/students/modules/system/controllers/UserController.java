@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:53:42
- * @LastEditTime: 2021-06-23 17:02:02
+ * @LastEditTime: 2021-06-24 09:31:29
  * @Description: 用户控制器接口
  */
 package com.kangert.students.modules.system.controllers;
@@ -21,6 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
+@Api(tags = "用户管理")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -28,28 +34,38 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @ApiOperation(value = "用户添加")
     @GetMapping(value = "/add")
     public String addUser() {
         userService.addUser();
         return "成功";
     }
 
+    @ApiOperation(value = "用户列表")
+    @ApiImplicitParams(value = { @ApiImplicitParam(name = "page", value = "当前页码", required = true),
+            @ApiImplicitParam(name = "pageSize", value = "当前页数据量", required = true) })
     @GetMapping(value = "/list")
     public Page<UserEntity> getUsers(@RequestParam int page, @RequestParam int pageSize) {
         return userService.getUsers(page, pageSize);
     }
 
-    @PostMapping(value = "/del/{id}")
+    @ApiOperation(value = "用户删除")
+    @ApiImplicitParam(name = "id", value = "用户ID", required = true)
+    @DeleteMapping(value = "/del/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteById(id);
         return "删除ID：" + id + "成功！";
     }
 
+    @ApiOperation(value = "用户删除（所有）")
     @DeleteMapping(value = "/del/all")
     public String deleteAllUser() {
         return userService.deleteAllUser();
     }
 
+    @ApiOperation(value = "用户名更改")
+   @ApiImplicitParams(value = { @ApiImplicitParam(name = "id", value = "用户ID", required = true),
+            @ApiImplicitParam(name = "username", value = "更改额名称", required = true) })
     @PutMapping(value = "/{id}/{username}")
     public String updateUser(@PathVariable("id") Long id, @PathVariable("username") String username) {
         return userService.updateUserName(id, username);

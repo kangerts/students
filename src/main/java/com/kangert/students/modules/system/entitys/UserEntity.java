@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 14:40:58
- * @LastEditTime: 2021-06-24 09:33:18
+ * @LastEditTime: 2021-06-25 14:37:38
  * @Description: 用户尸体类
  */
 
@@ -34,8 +34,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "sys_user")
-@SQLDelete(sql = "update sys_user set deleted = 1 where user_id = ?") 
-@Where(clause = "deleted = 0") 
+@SQLDelete(sql = "update sys_user set deleted = 1 where user_id = ?")
+@Where(clause = "deleted = 0")
 public class UserEntity extends BaseEntity {
 
     @Id

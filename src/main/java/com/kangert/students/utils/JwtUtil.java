@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 21:07:40
- * @LastEditTime: 2021-06-25 10:50:50
+ * @LastEditTime: 2021-06-25 11:27:47
  * @Description: JWT工具类
  */
 package com.kangert.students.utils;
@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.jwt.JWT;
+import cn.hutool.jwt.JWTHeader;
 import cn.hutool.jwt.JWTValidator;
 import cn.hutool.jwt.signers.AlgorithmUtil;
 import cn.hutool.jwt.signers.JWTSignerUtil;

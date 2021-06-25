@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 14:38:08
- * @LastEditTime: 2021-06-21 10:46:41
+ * @LastEditTime: 2021-06-25 10:43:23
  * @Description: 项目启动入口
  */
 
@@ -34,7 +34,7 @@ public class StudentsApplication {
     }
 
     @GetMapping("/")
-    public String serverInfo() {
+    public ResponseUtil serverInfo() {
         Map<String, Object> data = new HashMap<String, Object>(2);
         data.put("serverVersion", "v0.0.1");
         data.put("serverTime", DateUtil.now());
@@ -42,7 +42,7 @@ public class StudentsApplication {
     }
 
     @GetMapping("/DruidInfo")
-    public String druidInfo() {
+    public ResponseUtil druidInfo() {
         // DruidStatManagerFacade#getDataSourceStatDataList 该方法可以获取所有数据源的监控数据，除此之外
         // DruidStatManagerFacade 还提供了一些其他方法，你可以按需选择使用。
         return responseUtil.ok("", DruidStatManagerFacade.getInstance().getDataSourceStatDataList());

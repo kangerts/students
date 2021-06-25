@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 18:10:19
- * @LastEditTime: 2021-06-24 18:05:38
+ * @LastEditTime: 2021-06-25 10:28:38
  * @Description: 统一数据响应工具类
  */
 package com.kangert.students.utils;
@@ -13,8 +13,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import org.springframework.stereotype.Component;
 
-@JsonPropertyOrder(value = { "code", "msg", "data" })
 @Component
+@JsonPropertyOrder(value = { "code", "msg", "data" })
 public class ResponseUtil implements Serializable {
     /**
      * 响应代码

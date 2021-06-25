@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-27 15:15:54
- * @LastEditTime: 2021-05-13 11:10:32
+ * @LastEditTime: 2021-06-25 11:00:17
  * @Description: JWT验证处理工具类
  */
 package com.kangert.students.handlers;
@@ -14,7 +14,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kangert.students.utils.JacksonUtil;
 import com.kangert.students.utils.JwtUtil;
+import com.kangert.students.utils.ResponseUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,13 +25,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import cn.hutool.core.util.StrUtil;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 
 public class JwtAuthHandler extends BasicAuthenticationFilter {
 
     @Autowired
-    JwtUtil jwtUtil;
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private ResponseUtil responseUtil;
 
     public JwtAuthHandler(AuthenticationManager authenticationManager) {
         super(authenticationManager);
@@ -39,10 +42,9 @@ public class JwtAuthHandler extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         /**
-         * 获取jwt，Claims
+         * 获取jwt
          */
         String jwt = request.getHeader(jwtUtil.getHeader());
-        Claims claims = jwtUtil.getClaimsByToken(jwt);
 
         /**
          * 判断jwt为空还是未定义
@@ -53,20 +55,14 @@ public class JwtAuthHandler extends BasicAuthenticationFilter {
         }
 
         /**
-         * 不存在
+         * 判断jwt是否合法
          */
-        if (claims == null) {
-            throw new JwtException("Token异常！");
+        if (!jwtUtil.isTokenLegal(jwt)) {
+            response.getOutputStream().write(JacksonUtil.serialize(responseUtil.no("Token验证失败，请重新登录！")).getBytes());
+            return;
         }
 
-        /**
-         * jwt过期
-         */
-        if (jwtUtil.isTokenExpire(claims)) {
-            throw new JwtException("Token已过期");
-        }
-
-        String username = claims.getSubject();
+        String username = "";
         // 此时可以进行用户权限判断
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, null);
         SecurityContextHolder.getContext().setAuthentication(token);

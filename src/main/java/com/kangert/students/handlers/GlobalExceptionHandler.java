@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 18:55:15
- * @LastEditTime: 2021-06-24 18:03:34
+ * @LastEditTime: 2021-06-30 11:34:57
  * @Description: 全局异常处理工具类
  */
 
@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(value = AccessDeniedException.class)
     public ResponseUtil handler(AccessDeniedException e) {
-        logger.error("AccessDeniedException ---> 访问拒绝异常！");
+        logger.error("AccessDeniedException ---> 访问拒绝异常：" + e.getMessage());
         return responseUtil.no("访问拒绝异常：" + e.getMessage());
     }
 
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseUtil handler(RuntimeException e) {
-        logger.error("RuntimeException ---> 运行时异常！" + e.getMessage());
+        logger.error("RuntimeException ---> 运行时异常：" + e.getMessage());
         return responseUtil.no("运行时异常：" + e.getMessage());
     }
 
@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = IllegalArgumentException.class)
     public ResponseUtil handler(IllegalArgumentException e) {
-        logger.error("IllegalArgumentException ---> 不合法的参数异常！");
+        logger.error("IllegalArgumentException ---> 不合法的参数异常：" + e.getMessage());
         return responseUtil.no("不合法的参数异常：" + e.getMessage());
     }
 
@@ -72,7 +72,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseUtil handler(MethodArgumentNotValidException e) {
-        logger.error("MethodArgumentNotValidException ---> 实体校验异常！", e.getMessage());
+        logger.error("MethodArgumentNotValidException ---> 实体校验异常：", e.getMessage());
         BindingResult bindingResult = e.getBindingResult();
         ObjectError objectError = bindingResult.getAllErrors().stream().findFirst().get();
         return responseUtil.no("实体校验异常：" + objectError.getDefaultMessage());

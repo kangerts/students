@@ -2,11 +2,12 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-06-23 16:00:04
- * @LastEditTime: 2021-06-24 09:36:42
+ * @LastEditTime: 2021-06-29 15:56:37
  * @Description:Swagger配置依赖 package com.kangert.students.configs;
  */
 package com.kangert.students.configs;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+@EnableKnife4j
 public class Knife4jConfiguration {
 
     /* 引入Knife4j提供的扩展类 */

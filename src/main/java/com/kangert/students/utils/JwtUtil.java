@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 21:07:40
- * @LastEditTime: 2021-06-25 11:27:47
+ * @LastEditTime: 2021-06-30 16:43:07
  * @Description: JWT工具类
  */
 package com.kangert.students.utils;
@@ -14,10 +14,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.exceptions.ValidateException;
 import cn.hutool.jwt.JWT;
-import cn.hutool.jwt.JWTHeader;
 import cn.hutool.jwt.JWTValidator;
-import cn.hutool.jwt.signers.AlgorithmUtil;
 import cn.hutool.jwt.signers.JWTSignerUtil;
 
 @Configuration
@@ -50,7 +49,7 @@ public class JwtUtil {
         Date currentTime = new Date(DateUtil.current());
 
         // 计算过期时的时间
-        Date expireTime = new Date(currentTime.getTime() + 1000 * expireSeconds);
+        Date expireTime = new Date(currentTime.getTime() + 1000 * 30);
 
         return JWT.create().setHeader("type", "JWT").setCharset(Charset.forName("UTF-8")).setSubject(userName)
                 .setIssuedAt(currentTime).setExpiresAt(expireTime).setSigner(JWTSignerUtil.hs512(secret.getBytes()))
@@ -66,9 +65,8 @@ public class JwtUtil {
     public boolean isTokenLegal(String jwt) {
         boolean isItLegal = true;
         try {
-            JWTValidator.of(jwt).validateAlgorithm(JWTSignerUtil.hs512(secret.getBytes()))
-                    .validateDate(new Date(DateUtil.current()));
-        } catch (Exception e) {
+            JWTValidator.of(jwt).validateAlgorithm(JWTSignerUtil.hs512(secret.getBytes())).validateDate(null);
+        } catch (ValidateException e) {
             isItLegal = false;
         }
         return isItLegal;

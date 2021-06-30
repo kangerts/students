@@ -106,7 +106,7 @@ jwt:
 # 日志
 logging:
     file:
-        path: ./sys/logs
+        name: ./sys/logs/students.log
 
 # API文档配置
 knife4j:

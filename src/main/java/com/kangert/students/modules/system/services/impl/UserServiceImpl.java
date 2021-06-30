@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-29 20:51:16
- * @LastEditTime: 2021-06-25 16:32:29
+ * @LastEditTime: 2021-06-30 13:44:36
  * @Description: 用户接口实现类
  */
 package com.kangert.students.modules.system.services.impl;
@@ -36,8 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseUtil addUser() {
-        String[] a = new String[5];
-        for (int i = 0; i <= a.length; i++) {
+        for (int i = 0; i <= 5; i++) {
             UserEntity user = new UserEntity();
             user.setUsername("username" + i);
             user.setPassword("password" + i);
@@ -66,7 +65,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseUtil getUsers(int currentPage, int pageSize) {
-        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(Sort.Direction.ASC, "id"));
+        int page = currentPage > 0 ? currentPage - 1 : 0;
+        Pageable pageable = PageRequest.of(page, pageSize, Sort.by(Sort.Direction.ASC, "id"));
         Page<UserEntity> userList = userRepository.findAll(new Specification<UserEntity>() {
 
             @Override

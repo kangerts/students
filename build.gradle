@@ -27,7 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'com.github.xiaoymin:knife4j-spring-boot-starter:3.0.3'
     implementation 'com.alibaba:druid-spring-boot-starter:1.2.6'
-    implementation 'cn.hutool:hutool-all:5.7.2'
+    implementation 'cn.hutool:hutool-all:5.7.3'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

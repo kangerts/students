@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 21:07:40
- * @LastEditTime: 2021-06-30 16:43:07
+ * @LastEditTime: 2021-06-30 17:05:39
  * @Description: JWT工具类
  */
 package com.kangert.students.utils;
@@ -49,7 +49,7 @@ public class JwtUtil {
         Date currentTime = new Date(DateUtil.current());
 
         // 计算过期时的时间
-        Date expireTime = new Date(currentTime.getTime() + 1000 * 30);
+        Date expireTime = new Date(currentTime.getTime() + 1000 * expireSeconds);
 
         return JWT.create().setHeader("type", "JWT").setCharset(Charset.forName("UTF-8")).setSubject(userName)
                 .setIssuedAt(currentTime).setExpiresAt(expireTime).setSigner(JWTSignerUtil.hs512(secret.getBytes()))

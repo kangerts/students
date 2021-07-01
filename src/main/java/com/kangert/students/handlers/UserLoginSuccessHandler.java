@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-26 20:46:14
- * @LastEditTime: 2021-06-24 10:46:09
+ * @LastEditTime: 2021-06-30 17:10:07
  * @Description: 用户登录成功处理工具类
  */
 package com.kangert.students.handlers;
@@ -14,6 +14,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kangert.students.utils.JacksonUtil;
 import com.kangert.students.utils.JwtUtil;
 import com.kangert.students.utils.ResponseUtil;
 
@@ -21,8 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-import cn.hutool.json.JSONUtil;
 
 @Configuration
 public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
@@ -42,7 +41,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
         response.setHeader(jwtUtil.getHeader(), jwt);
         // 响应
         ServletOutputStream outputStream = response.getOutputStream();
-        outputStream.write(JSONUtil.toJsonStr(responseUtil.ok("登录成功！")).getBytes("UTF-8"));
+        outputStream.write(JacksonUtil.serialize(responseUtil.ok("登录成功！")).getBytes("UTF-8"));
         outputStream.flush();
         outputStream.close();
     }

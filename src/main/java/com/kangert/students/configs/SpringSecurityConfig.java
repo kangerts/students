@@ -2,7 +2,7 @@
  * @Author: kangert
  * @Email: kangert@qq.com
  * @Date: 2021-04-25 15:51:39
- * @LastEditTime: 2021-06-23 16:31:31
+ * @LastEditTime: 2021-08-04 13:10:23
  * @Description: SpringSecurity配置类
  */
 package com.kangert.students.configs;
@@ -85,7 +85,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/DruidInfo/**").permitAll()
 
                 // 配置拦截规则（白名单）
-                .antMatchers("/", "/userLogin").permitAll().anyRequest().authenticated()
+                .antMatchers("/", "/userLogin", "/mock/**").permitAll().anyRequest().authenticated()
 
                 // 异常处理
                 .and().exceptionHandling().authenticationEntryPoint(jwtAuthEntryPointHandler)
